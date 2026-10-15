@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex" />
+  <title>BRASA — Admin</title>
+  <link rel="icon" href="assets/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Outfit:wght@360;480;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/admin.css" />
+</head>
+<body>
+  <main id="gate" class="gate">
+    <form class="panel" id="loginForm" autocomplete="on">
+      <img class="logo" src="assets/logo-white.png" alt="BRASA" width="1450" height="714" />
+      <label>
+        Nome
+        <input name="name" type="text" autocomplete="username" required />
+      </label>
+      <label>
+        Senha
+        <input name="password" type="password" autocomplete="current-password" required />
+      </label>
+      <button class="enter" type="submit">Entrar</button>
+      <p class="error" id="loginError" hidden>Nome ou senha incorretos.</p>
+    </form>
+  </main>
+
+  <main id="desk" class="desk" hidden>
+    <header class="top">
+      <img class="logo logo-sm" src="assets/logo-white.png" alt="BRASA" width="1450" height="714" />
+      <div class="top-actions">
+        <button type="button" id="refresh" class="ghost">Atualizar</button>
+        <button type="button" id="logout" class="ghost">Sair</button>
+      </div>
+    </header>
+
+    <div class="periods" role="tablist" aria-label="Período">
+      <button type="button" data-range="year">12 meses</button>
+      <button type="button" data-range="half">6 meses</button>
+      <button type="button" data-range="quarter">3 meses</button>
+      <button type="button" data-range="month" aria-selected="true">1 mês</button>
+      <button type="button" data-range="week">1 semana</button>
+      <button type="button" data-range="day">1 dia</button>
+    </div>
+
+    <section class="stats">
+      <article class="window">
+        <p>Aberturas do site</p>
+        <strong id="statViews">0</strong>
+        <span id="statLastView">Nenhuma ainda</span>
+      </article>
+      <article class="window">
+        <p>Pessoas</p>
+        <strong id="statPeople">0</strong>
+        <span>Quem abriu o link neste período</span>
+      </article>
+      <article class="window">
+        <p>Foram ao WhatsApp</p>
+        <strong id="statWa">0</strong>
+        <span id="statLastWa">Nenhum clique ainda</span>
+      </article>
+      <article class="window">
+        <p>Pessoas no WhatsApp</p>
+        <strong id="statPeopleWa">0</strong>
+        <span id="statRate">0% de quem abriu o site</span>
+      </article>
+    </section>
+
+    <section class="split">
+      <article class="window chart-window">
+        <header>
+          <h2>Movimento</h2>
+          <p class="legend"><i class="swatch view"></i> Aberturas <i class="swatch wa"></i> WhatsApp</p>
+        </header>
+        <div class="chart" id="chart"></div>
+        <p class="peak" id="peak">Sem pico neste período.</p>
+      </article>
+      <article class="window">
+        <h2>De onde veio o WhatsApp</h2>
+        <ul class="origins" id="origins"></ul>
+        <h2 class="recent-title">Últimos registros</h2>
+        <ul class="recent" id="recent"></ul>
+      </article>
+    </section>
+  </main>
+
+  <script src="js/analytics.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

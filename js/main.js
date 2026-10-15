@@ -32,7 +32,13 @@ document.querySelectorAll("[data-wa]").forEach((el) => {
     el.target = "_blank";
     el.rel = "noopener noreferrer";
   }
+  el.addEventListener("click", () => {
+    const via = el.classList.contains("wa") ? "botao" : el.classList.contains("btn-flame") ? "pedro" : "contato";
+    BrasaTrack.track("wa", via);
+  });
 });
+
+BrasaTrack.track("view");
 
 const year = document.getElementById("year");
 if (year) year.textContent = String(new Date().getFullYear());
