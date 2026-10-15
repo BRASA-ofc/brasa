@@ -4,7 +4,7 @@
    Formato: código do país + DDD + número, somente dígitos.
    Exemplo: 5511999990000
    ========================================================= */
-const WHATSAPP_NUMBER = "5500000000000";
+const WHATSAPP_NUMBER = "5567981668133";
 
 const WA_MESSAGES = {
   geral: "Olá, BRASA. Quero falar sobre um projeto.",
