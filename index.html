@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BRASA — Sites e automações</title>
+  <meta name="description" content="A BRASA cria sites e automações para empresas. Landing pages, sites institucionais, experiências interativas e processos automáticos no WhatsApp, Instagram e na operação." />
+  <meta name="theme-color" content="#080808" />
+  <link rel="icon" href="assets/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,520;12..96,700;12..96,800&family=Fraunces:ital,opsz,wght@1,9..144,500;1,9..144,620&family=Outfit:wght@340;420;520;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <a class="skip" href="#inicio">Ir para o conteúdo</a>
+  <div class="progress" aria-hidden="true"><span id="progressBar"></span></div>
+
+  <header class="nav" id="nav">
+    <a class="brand" href="#inicio" aria-label="BRASA, início">
+      <img src="assets/logo.png" alt="" width="1450" height="714" />
+      <span>BRASA</span>
+    </a>
+    <p class="nav-current" id="navCurrent" aria-live="polite">Início</p>
+    <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="navLinks">
+      <span class="nav-toggle-lines" aria-hidden="true"></span>
+      <span class="sr-only">Abrir menu</span>
+    </button>
+    <nav class="nav-links" id="navLinks" aria-label="Seções">
+      <a href="#sites" data-section="sites">Sites</a>
+      <a href="#automacoes" data-section="automacoes">Automações</a>
+      <a href="#portfolio" data-section="portfolio">Portfólio</a>
+      <a href="#socios" data-section="socios">Sócios</a>
+      <a href="#contato" data-section="contato">Contato</a>
+    </nav>
+  </header>
+
+  <nav class="rail" aria-label="Posição na página">
+    <a href="#inicio" data-section="inicio"><span>01</span> Início</a>
+    <a href="#oficio" data-section="oficio"><span>02</span> Ofício</a>
+    <a href="#sites" data-section="sites"><span>03</span> Sites</a>
+    <a href="#automacoes" data-section="automacoes"><span>04</span> Automações</a>
+    <a href="#portfolio" data-section="portfolio"><span>05</span> Portfólio</a>
+    <a href="#socios" data-section="socios"><span>06</span> Sócios</a>
+    <a href="#contato" data-section="contato"><span>07</span> Contato</a>
+  </nav>
+
+  <main>
+    <section class="hero" id="inicio" data-section-observe="inicio">
+      <div class="hero-copy">
+        <p class="hero-pair"><span>Sites</span><i aria-hidden="true"></i><span>Automações</span></p>
+        <h1>Sites e<br />automações<br />para empresas.</h1>
+        <p class="hero-sub">A página que apresenta o negócio. E o processo que responde, publica e tira o repetitivo do caminho.</p>
+        <div class="hero-actions">
+          <a class="btn-primary" href="#contato">Entrar em contato</a>
+          <a class="explore" href="#oficio">
+            <span>Role para explorar</span>
+            <span class="explore-line" aria-hidden="true"><i></i></span>
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-visual" aria-hidden="true">
+        <div class="flame" id="flame"></div>
+        <div class="logo-wrap" id="logoWrap">
+          <img class="hero-logo" src="assets/logo-black.png" alt="" width="1450" height="714" />
+        </div>
+      </div>
+    </section>
+
+    <div class="ink" id="ink" aria-hidden="true">
+      <svg id="inkSvg" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="inkFire" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#ff3c14" />
+            <stop offset="100%" stop-color="#c81010" />
+          </linearGradient>
+        </defs>
+        <g id="inkGroup" fill="url(#inkFire)"></g>
+      </svg>
+    </div>
+
+    <section class="oficio" id="oficio" data-section-observe="oficio">
+      <div class="oficio-head">
+        <p class="index" data-reveal>02 — O que fazemos</p>
+        <h2 data-reveal style="--d:.08s">Duas frentes.<br />Um estúdio.</h2>
+        <p class="lede" data-reveal style="--d:.16s">A BRASA faz a empresa ser vista e tira da equipe o trabalho que se repete. As duas coisas, no mesmo lugar.</p>
+      </div>
+      <div class="oficio-rows">
+        <a class="oficio-row" href="#sites" data-reveal style="--d:.05s">
+          <span class="ol-n">01</span>
+          <span class="ol-title">Sites</span>
+          <span class="ol-desc">Landing pages, institucionais, comerciais, estruturas maiores, interação e 3D.</span>
+          <span class="ol-go">Ver a frente <em>→</em></span>
+        </a>
+        <a class="oficio-row" href="#automacoes" data-reveal style="--d:.12s">
+          <span class="ol-n">02</span>
+          <span class="ol-title">Automações</span>
+          <span class="ol-desc">WhatsApp, Instagram, tarefas e processos que passam a acontecer sozinhos.</span>
+          <span class="ol-go">Ver a frente <em>→</em></span>
+        </a>
+      </div>
+    </section>
+
+    <section class="sites" id="sites" data-section-observe="sites">
+      <header class="sites-head">
+        <p class="index" data-reveal>03 — Sites</p>
+        <h2 data-reveal style="--d:.08s">Presença feita sob medida.</h2>
+        <p class="lede" data-reveal style="--d:.14s">Cada interface nasce da empresa que contratou. Página de campanha, site inteiro ou uma experiência com profundidade — desenhados um a um.</p>
+      </header>
+
+      <div class="svc-list" data-reveal style="--d:.18s">
+        <button type="button" data-scene="landing" aria-pressed="true">
+          <span>Landing pages</span>
+          <small>Um destino claro para a campanha.</small>
+        </button>
+        <button type="button" data-scene="institucional">
+          <span>Sites institucionais</span>
+          <small>A empresa, inteira e legível.</small>
+        </button>
+        <button type="button" data-scene="comercial">
+          <span>Sites comerciais</span>
+          <small>Oferta, vitrine e caminho até a compra.</small>
+        </button>
+        <button type="button" data-scene="complexo">
+          <span>Sites mais complexos</span>
+          <small>Várias camadas, uma estrutura só.</small>
+        </button>
+        <button type="button" data-scene="interativo">
+          <span>Sites interativos</span>
+          <small>A página responde a quem usa.</small>
+        </button>
+        <button type="button" data-scene="3d">
+          <span>Experiências 3D</span>
+          <small>Objeto, espaço e movimento.</small>
+        </button>
+      </div>
+
+      <div class="stage" id="stage" data-scene="landing" data-reveal="scale">
+        <div class="piece plane">
+          <div class="plane-rock">
+            <div class="plane-grid"></div>
+          </div>
+          <span class="piece-tag">experiência 3D</span>
+        </div>
+
+        <div class="piece win">
+          <div class="win-bar"><i></i><i></i><i></i><em>brasa.estudio / página</em></div>
+          <div class="win-body">
+            <div class="mini-top"><b>marca</b><span>trabalho</span><span>contato</span></div>
+            <div class="mini-hero">
+              <strong>Uma página<br />com peso.</strong>
+              <i class="mini-block"></i>
+            </div>
+            <div class="mini-row"><span></span><span></span><span></span></div>
+          </div>
+        </div>
+
+        <div class="piece phone">
+          <div class="phone-screen">
+            <b>marca</b>
+            <strong>No bolso, com a mesma presença.</strong>
+            <em>entrar</em>
+          </div>
+        </div>
+
+        <pre class="piece code" aria-hidden="true"><code><span class="tok">export</span> function sitio() {
+  return marca
+    .<span class="fn">sobMedida</span>()
+    .<span class="fn">comPresença</span>()
+}</code></pre>
+
+        <div class="piece tile">
+          <i></i>
+          <span>coleção 04</span>
+          <strong>peça única</strong>
+        </div>
+
+        <div class="piece cursor" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <section class="auto" id="automacoes" data-section-observe="automacoes">
+      <header class="auto-head">
+        <p class="index" data-reveal>04 — Automações</p>
+        <h2 data-reveal style="--d:.08s">O manual vira fluxo.</h2>
+        <p class="lede" data-reveal style="--d:.14s">WhatsApp, Instagram e a rotina da empresa entram num processo. O repetitivo sai da frente. A equipe fica com o que pede gente.</p>
+      </header>
+
+      <div class="machine" data-reveal>
+        <div class="manual">
+          <p class="col-label">Antes <span>alguém faz toda vez</span></p>
+          <ul>
+            <li style="--i:0">Responder o WhatsApp</li>
+            <li style="--i:1">Responder o WhatsApp</li>
+            <li style="--i:2">Postar no Instagram</li>
+            <li style="--i:3">Atualizar a planilha</li>
+            <li style="--i:4">Responder o WhatsApp</li>
+          </ul>
+          <p class="less">Menos repetição</p>
+        </div>
+
+        <div class="core" aria-hidden="true">
+          <img src="assets/logo.png" alt="" />
+          <svg class="flow-lines" viewBox="0 0 120 320" preserveAspectRatio="none">
+            <path d="M4 40 C 70 40, 50 70, 116 78" />
+            <path d="M4 110 C 60 110, 70 140, 116 150" />
+            <path d="M4 190 C 74 190, 40 210, 116 214" />
+            <path d="M4 260 C 68 250, 80 270, 116 286" />
+          </svg>
+        </div>
+
+        <div class="outcomes">
+          <p class="col-label">Depois <span>o fluxo faz toda vez</span></p>
+          <article class="node node-wa" style="--i:0">
+            <header><b>WhatsApp</b><span>automático</span></header>
+            <p class="bubble in">Oi, vocês têm horário amanhã?</p>
+            <p class="bubble out">Temos. Terça, 14h. Posso reservar?</p>
+          </article>
+          <article class="node ig" style="--i:1">
+            <header><b>Instagram</b><span>no horário</span></header>
+            <div class="ig-row">
+              <i class="ring"></i>
+              <p>Publicação saindo às 9h, sem ninguém lembrar.</p>
+            </div>
+          </article>
+          <article class="node task" style="--i:2">
+            <header><b>Tarefas</b><span>concluídas</span></header>
+            <ul>
+              <li>Confirmar pedido</li>
+              <li>Avisar o cliente</li>
+              <li>Atualizar a planilha</li>
+            </ul>
+          </article>
+          <article class="node proc" style="--i:3">
+            <header><b>Processos</b><span>da empresa</span></header>
+            <p class="clock">Fecha o relatório às 18h. Todo dia. Sozinho.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="portfolio" id="portfolio" data-section-observe="portfolio">
+      <header class="port-intro">
+        <p class="index" data-reveal>05 — Portfólio</p>
+        <h2 data-reveal style="--d:.08s">Dois universos.</h2>
+        <p class="lede" data-reveal style="--d:.14s">Cada trabalho carrega o clima de quem pediu. Nenhum parece o outro.</p>
+      </header>
+
+      <article class="spread pet" id="petSpread">
+        <div class="pet-sheet">
+          <div class="sheet-grain" aria-hidden="true"></div>
+          <div class="scrap cream" aria-hidden="true"></div>
+          <div class="scrap pink" aria-hidden="true"></div>
+          <div class="scrap blue" aria-hidden="true"></div>
+          <div class="pet-copy">
+            <p class="pet-index">Projeto 01</p>
+            <h3>Seu Petshop</h3>
+            <p>Vitrine, banho e tosa, e uma página que parece a loja: amarela, direta, com personalidade.</p>
+            <a class="sticker" href="https://brasa-seupetshop.netlify.app/" target="_blank" rel="noopener noreferrer">Ver projeto <em>→</em></a>
+          </div>
+          <div class="mock pet-mock" data-depth="12">
+            <div class="mock-bar"><i></i><i></i><i></i><em>seupetshop</em></div>
+            <div class="pet-screen">
+              <div class="ps-nav"><b>PETSHOP</b><span>serviços</span><span>contato</span></div>
+              <p class="ps-kicker">banho · tosa · cuidado</p>
+              <p class="ps-title">SEU PET<br />MERECE UM<br />DIA DE<br /><span>ESTRELA.</span></p>
+              <div class="ps-actions"><em>quero cuidar</em><em class="ghost">serviços</em></div>
+              <i class="ps-note">hoje é dia de spa</i>
+            </div>
+          </div>
+        </div>
+
+        <div class="decos" aria-hidden="true">
+          <span class="float f1"><span class="layer" data-depth="28"><svg class="paw"><use href="#paw" /></svg></span></span>
+          <span class="float f2"><span class="layer" data-depth="40"><svg class="bone"><use href="#bone" /></svg></span></span>
+          <span class="float f3"><span class="layer" data-depth="22"><svg class="paw"><use href="#paw" /></svg></span></span>
+          <span class="float f4"><span class="layer" data-depth="46"><svg class="bone sm"><use href="#bone" /></svg></span></span>
+          <span class="float f5"><span class="layer" data-depth="34"><svg class="paw sm"><use href="#paw" /></svg></span></span>
+          <span class="float f6"><i class="dot pink"></i></span>
+          <span class="float f7"><i class="star"></i></span>
+        </div>
+      </article>
+
+      <article class="spread clinic" id="clinicSpread">
+        <div class="clinic-copy">
+          <p class="clinic-index">Projeto 02</p>
+          <h3>Sua Clínica<br />Odontológica</h3>
+          <p>Institucional clínico. Branco, calmo, com a confiança que uma clínica precisa passar antes da primeira consulta.</p>
+          <a class="clinic-btn" href="https://sua-clinica-odontologica.netlify.app/" target="_blank" rel="noopener noreferrer">Ver projeto <em>→</em></a>
+        </div>
+        <div class="clinic-stage">
+          <div class="mock clinic-mock" data-depth="10">
+            <div class="mock-bar light"><i></i><i></i><i></i><em>sua clínica</em></div>
+            <div class="cl-screen">
+              <div class="cl-nav"><b>Sua Clínica</b><span>proposta</span><span>contato</span></div>
+              <p class="cl-kicker">odontologia contemporânea</p>
+              <p class="cl-title">Seu sorriso<br />merece o melhor<br />cuidado.</p>
+              <i class="cl-wave"></i>
+              <div class="cl-dark" aria-hidden="true"></div>
+            </div>
+          </div>
+          <span class="tooth t1" data-depth="26"><svg><use href="#tooth" /></svg></span>
+          <span class="tooth t2" data-depth="18"><svg><use href="#tooth" /></svg></span>
+          <span class="tooth t3" data-depth="34"><svg><use href="#tooth" /></svg></span>
+          <span class="tooth t4" data-depth="16"><svg><use href="#tooth" /></svg></span>
+          <span class="tooth t5" data-depth="28"><svg><use href="#tooth" /></svg></span>
+        </div>
+      </article>
+    </section>
+
+    <section class="socios" id="socios" data-section-observe="socios">
+      <header class="socios-head">
+        <p class="index" data-reveal>06 — Sócios</p>
+        <h2 data-reveal style="--d:.08s">Quem acende a BRASA.</h2>
+      </header>
+      <div class="partners">
+        <article class="partner arthur" data-reveal>
+          <p class="role">O Programador</p>
+          <h3>Arthur Walker</h3>
+          <blockquote>Quem cuida de tudo atrás das câmeras.</blockquote>
+          <p>Responsável pela programação, pelo desenvolvimento e pela construção técnica dos projetos.</p>
+          <pre aria-hidden="true"><span>01</span> const brasa = build()
+<span>02</span> brasa.render(presença)<span class="caret"></span></pre>
+        </article>
+        <article class="partner julio" id="julio" data-reveal style="--d:.1s">
+          <p class="watermark" aria-hidden="true">mídia</p>
+          <p class="role">O Marketing</p>
+          <h3>Júlio César</h3>
+          <blockquote>Quem cuida de toda visibilidade e publicidade.</blockquote>
+          <p>Responsável pelo marketing, pela divulgação e pela presença da BRASA.</p>
+        </article>
+        <article class="partner pedro" data-reveal style="--d:.18s">
+          <p class="role">O Gestor / Suporte</p>
+          <h3>Pedro Yamane</h3>
+          <blockquote>É com ele que você conversa.</blockquote>
+          <p>Responsável pela gestão e pelo suporte aos clientes.</p>
+          <a class="btn-flame" data-wa="pedro" href="#">Conversar com Pedro <em>→</em></a>
+        </article>
+      </div>
+    </section>
+
+    <section class="contact" id="contato" data-section-observe="contato">
+      <div class="contact-copy">
+        <p class="index" data-reveal>07 — Contato</p>
+        <h2 data-reveal style="--d:.08s">Fale com<br />a BRASA.</h2>
+        <p class="lede" data-reveal style="--d:.16s">Uma ideia entra. Um site ou uma automação sai.</p>
+      </div>
+      <div class="contact-panel" id="contactPanel">
+        <p>Precisa de presença digital, ou de tempo de volta?</p>
+        <a class="contact-btn" data-wa="geral" href="#">Entrar em contato <em>→</em></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <a class="brand" href="#inicio">
+      <img src="assets/logo.png" alt="" width="1450" height="714" />
+      <span>BRASA</span>
+    </a>
+    <p>Sites e automações para empresas.</p>
+    <nav aria-label="Rodapé">
+      <a href="#sites">Sites</a>
+      <a href="#automacoes">Automações</a>
+      <a href="#portfolio">Portfólio</a>
+      <a href="#socios">Sócios</a>
+      <a href="#contato">Contato</a>
+    </nav>
+    <small>© <span id="year">2026</span> BRASA</small>
+  </footer>
+
+  <!-- O número é definido em js/main.js → WHATSAPP_NUMBER -->
+  <a class="wa" data-wa="geral" href="#" aria-label="Falar no WhatsApp">
+    <span class="wa-ring" aria-hidden="true"></span>
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path fill="currentColor" d="M12.04 2C6.58 2 2.15 6.4 2.15 11.83c0 1.74.46 3.44 1.34 4.94L2 22l5.39-1.4a10 10 0 0 0 4.65 1.18h.01c5.46 0 9.89-4.4 9.89-9.83C21.94 6.4 17.5 2 12.04 2zm5.76 14.02c-.24.68-1.4 1.3-1.94 1.38-.5.07-1.12.1-1.81-.11-.41-.13-.95-.31-1.64-.61-2.88-1.24-4.76-4.14-4.9-4.33-.14-.19-1.16-1.54-1.16-2.94s.73-2.08 1-2.37c.24-.26.64-.38.86-.38h.62c.2 0 .46-.07.72.55.27.64.91 2.22.99 2.38.08.16.13.35.03.56-.1.22-.15.35-.3.54-.14.19-.3.42-.43.56-.14.16-.29.33-.12.63.16.3.73 1.2 1.57 1.94 1.08.96 1.99 1.26 2.29 1.4.3.14.47.12.64-.07.18-.2.74-.86.94-1.16.2-.29.4-.24.66-.14.27.1 1.7.8 1.99.94.29.15.48.22.55.34.07.12.07.7-.17 1.38z"/>
+    </svg>
+    <span class="wa-label">WhatsApp</span>
+  </a>
+
+  <svg xmlns="http://www.w3.org/2000/svg" class="sprite" aria-hidden="true">
+    <symbol id="paw" viewBox="0 0 64 64">
+      <ellipse cx="15" cy="24" rx="7" ry="9" />
+      <ellipse cx="29" cy="13" rx="7.2" ry="9.2" />
+      <ellipse cx="44" cy="15" rx="7" ry="9" />
+      <ellipse cx="54" cy="27" rx="6.2" ry="8" />
+      <path d="M20 38c0-7 5.4-12 12-12s12 5 12 12c0 9-5.2 16-12 18S20 48 20 38z" />
+    </symbol>
+    <symbol id="bone" viewBox="0 0 88 36">
+      <path d="M16 10a7 7 0 1 0-1.2 8.2A7 7 0 1 0 16 28h56a7 7 0 1 0 1.2-9.8A7 7 0 1 0 72 10H16z" />
+    </symbol>
+    <symbol id="tooth" viewBox="0 0 48 68">
+      <path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" d="M10 18C10 8 16 3 24 3s14 5 14 15c1.2 9 5 16 5 25 0 9-4.5 18-9 18-3.2 0-4.2-5-10-5s-6.6 5-9.8 5c-4.6 0-9-9-9-18 0-9 3.6-16 4.8-25z" />
+    </symbol>
+  </svg>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
