@@ -16,7 +16,6 @@ const SECTION_LABELS = {
   oficio: "O que fazemos",
   sites: "Sites",
   automacoes: "Automações",
-  portfolio: "Portfólio",
   socios: "Sócios",
   contato: "Contato"
 };
@@ -149,9 +148,6 @@ function bindParallax(root) {
   });
   root.addEventListener("pointerleave", reset);
 }
-
-bindParallax(document.getElementById("petSpread"));
-bindParallax(document.getElementById("clinicSpread"));
 
 const julio = document.getElementById("julio");
 if (julio) {
