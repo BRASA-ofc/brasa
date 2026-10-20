@@ -36,6 +36,7 @@
         <button type="button" id="logout" class="ghost">Sair</button>
       </div>
     </header>
+    <p class="source" id="sourceNote"></p>
 
     <div class="periods" role="tablist" aria-label="Período">
       <button type="button" data-range="year">12 meses</button>
@@ -69,13 +70,37 @@
       </article>
     </section>
 
+    <section class="stats" aria-label="Portfólio">
+      <article class="window">
+        <p>Botão do portfólio</p>
+        <strong id="statPortal">0</strong>
+        <span id="statPortalPeople">Nenhuma pessoa</span>
+      </article>
+      <article class="window">
+        <p>Pessoas no portfólio</p>
+        <strong id="statPortalPeopleN">0</strong>
+        <span>Quem clicou no botão</span>
+      </article>
+      <article class="window">
+        <p>Seu Petshop</p>
+        <strong id="statPet">0</strong>
+        <span id="statPetPeople">Nenhuma pessoa</span>
+      </article>
+      <article class="window">
+        <p>Sua Clínica</p>
+        <strong id="statDent">0</strong>
+        <span id="statDentPeople">Nenhuma pessoa</span>
+      </article>
+    </section>
+
     <section class="split">
       <article class="window chart-window">
         <header>
           <h2>Movimento</h2>
-          <p class="legend"><i class="swatch view"></i> Aberturas <i class="swatch wa"></i> WhatsApp</p>
+          <p class="legend"><i class="swatch view"></i> Aberturas <i class="swatch wa"></i> WhatsApp <i class="swatch portal"></i> Portfólio</p>
         </header>
         <div class="chart" id="chart"></div>
+        <p class="tip" id="chartTip" hidden></p>
         <p class="peak" id="peak">Sem pico neste período.</p>
       </article>
       <article class="window">

@@ -37,6 +37,10 @@ document.querySelectorAll("[data-wa]").forEach((el) => {
   });
 });
 
+document.querySelectorAll(".portal").forEach((el) => {
+  el.addEventListener("click", () => BrasaTrack.track("portfolio", "portal"));
+});
+
 BrasaTrack.track("view");
 
 const year = document.getElementById("year");

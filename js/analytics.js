@@ -43,12 +43,21 @@ const BrasaTrack = (() => {
     }
   }
 
+  const ALLOWED = {
+    view: [""],
+    wa: ["botao", "contato", "pedro"],
+    portfolio: ["portal"],
+    site: ["pet", "dent"]
+  };
+
   function track(type, via) {
+    const kind = Object.prototype.hasOwnProperty.call(ALLOWED, type) ? type : "view";
+    const channel = ALLOWED[kind].includes(via) ? via : ALLOWED[kind][0];
     const event = {
-      t: type === "wa" ? "wa" : "view",
+      t: kind,
       ts: Date.now(),
       id: visitorId(),
-      via: via || ""
+      via: channel
     };
     saveLocal(event);
     const payload = JSON.stringify(event);
@@ -112,10 +121,25 @@ const BrasaTrack = (() => {
     }
     return slots.map((slot) => {
       const slice = events.filter((event) => event.ts >= slot.from && event.ts < slot.to);
+      const of = (type, via) => slice.filter((event) => event.t === type && (via ? event.via === via : true));
+      const people = (rows) => new Set(rows.map((event) => event.id)).size;
+      const views = of("view");
+      const was = of("wa");
+      const portals = of("portfolio", "portal");
+      const pets = of("site", "pet");
+      const dents = of("site", "dent");
       return {
         label: slot.label,
-        views: slice.filter((event) => event.t === "view").length,
-        wa: slice.filter((event) => event.t === "wa").length
+        views: views.length,
+        viewPeople: people(views),
+        wa: was.length,
+        waPeople: people(was),
+        portal: portals.length,
+        portalPeople: people(portals),
+        pet: pets.length,
+        petPeople: people(pets),
+        dent: dents.length,
+        dentPeople: people(dents)
       };
     });
   }
@@ -125,8 +149,12 @@ const BrasaTrack = (() => {
     const rows = events.filter((event) => event && event.ts >= from);
     const views = rows.filter((event) => event.t === "view");
     const was = rows.filter((event) => event.t === "wa");
-    const people = new Set(views.map((event) => event.id)).size;
-    const peopleWa = new Set(was.map((event) => event.id)).size;
+    const portals = rows.filter((event) => event.t === "portfolio");
+    const pets = rows.filter((event) => event.t === "site" && event.via === "pet");
+    const dents = rows.filter((event) => event.t === "site" && event.via === "dent");
+    const peopleOf = (list) => new Set(list.map((event) => event.id)).size;
+    const people = peopleOf(views);
+    const peopleWa = peopleOf(was);
     const via = { botao: 0, contato: 0, pedro: 0 };
     was.forEach((event) => {
       if (Object.prototype.hasOwnProperty.call(via, event.via)) via[event.via] += 1;
@@ -137,6 +165,12 @@ const BrasaTrack = (() => {
       wa: was.length,
       peopleWa,
       rate: people ? Math.round((peopleWa / people) * 100) : 0,
+      portal: portals.length,
+      portalPeople: peopleOf(portals),
+      pet: pets.length,
+      petPeople: peopleOf(pets),
+      dent: dents.length,
+      dentPeople: peopleOf(dents),
       via,
       lastView: views.reduce((max, event) => Math.max(max, event.ts), 0),
       lastWa: was.reduce((max, event) => Math.max(max, event.ts), 0),

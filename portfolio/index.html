@@ -67,5 +67,10 @@
       </a>
     </div>
   </main>
+  <script src="../js/analytics.js"></script>
+  <script>
+    document.querySelector(".btn.pet").addEventListener("click", () => BrasaTrack.track("site", "pet"));
+    document.querySelector(".btn.dent").addEventListener("click", () => BrasaTrack.track("site", "dent"));
+  </script>
 </body>
 </html>

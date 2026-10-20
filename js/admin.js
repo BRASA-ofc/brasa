@@ -47,6 +47,11 @@ async function login(name, password) {
   return false;
 }
 
+function pessoas(n) {
+  if (!n) return "Nenhuma pessoa";
+  return n === 1 ? "1 pessoa" : `${n} pessoas`;
+}
+
 async function loadEvents() {
   const token = sessionStorage.getItem("brasa-token");
   if (token) {
@@ -54,22 +59,52 @@ async function loadEvents() {
       const response = await fetch("/api/events", { headers: { Authorization: `Bearer ${token}` } });
       if (response.ok) {
         const data = await response.json();
-        if (Array.isArray(data.events)) return data.events;
+        if (Array.isArray(data.events)) return { events: data.events, remote: true };
       }
       if (response.status === 401) {
         sessionStorage.removeItem("brasa-token");
         sessionStorage.removeItem("brasa-admin");
         showGate();
-        return [];
+        return { events: [], remote: false };
       }
     } catch {
-      /* usa o registro deste navegador */
+      /* servidor fora do ar */
     }
   }
-  return BrasaTrack.readLocal();
+  return { events: BrasaTrack.readLocal(), remote: false };
 }
 
-function render(stats) {
+function barHeight(value, max) {
+  return value ? `${Math.max(10, Math.round((value / max) * 100))}%` : "0";
+}
+
+function tipText(bar) {
+  return [
+    bar.label,
+    `Aberturas: ${bar.views} · ${pessoas(bar.viewPeople)}`,
+    `WhatsApp: ${bar.wa} · ${pessoas(bar.waPeople)}`,
+    `Portfólio: ${bar.portal} · ${pessoas(bar.portalPeople)}`,
+    `Seu Petshop: ${bar.pet} · ${pessoas(bar.petPeople)}`,
+    `Sua Clínica: ${bar.dent} · ${pessoas(bar.dentPeople)}`
+  ].join("\n");
+}
+
+function placeTip(anchor) {
+  const tip = document.getElementById("chartTip");
+  const rect = anchor.getBoundingClientRect();
+  tip.hidden = false;
+  const box = tip.getBoundingClientRect();
+  const pad = 12;
+  let left = rect.left + rect.width / 2;
+  left = Math.max(pad + box.width / 2, Math.min(left, window.innerWidth - pad - box.width / 2));
+  tip.style.left = `${left}px`;
+  tip.style.top = `${Math.max(box.height + 8, rect.top - 8)}px`;
+}
+
+function render(stats, remote) {
+  document.getElementById("sourceNote").textContent = remote
+    ? "Vale para todo mundo que entrou por este endereço."
+    : "Por enquanto só conta neste navegador.";
   document.getElementById("statViews").textContent = String(stats.views);
   document.getElementById("statPeople").textContent = String(stats.people);
   document.getElementById("statWa").textContent = String(stats.wa);
@@ -79,26 +114,41 @@ function render(stats) {
   document.getElementById("statRate").textContent = stats.people
     ? `${stats.rate}% de quem abriu o site`
     : "Sem visitas neste período";
+  document.getElementById("statPortal").textContent = String(stats.portal);
+  document.getElementById("statPortalPeople").textContent = pessoas(stats.portalPeople);
+  document.getElementById("statPortalPeopleN").textContent = String(stats.portalPeople);
+  document.getElementById("statPet").textContent = String(stats.pet);
+  document.getElementById("statPetPeople").textContent = pessoas(stats.petPeople);
+  document.getElementById("statDent").textContent = String(stats.dent);
+  document.getElementById("statDentPeople").textContent = pessoas(stats.dentPeople);
 
-  const max = Math.max(1, ...stats.bars.map((bar) => Math.max(bar.views, bar.wa)));
+  const max = Math.max(1, ...stats.bars.map((bar) => Math.max(bar.views, bar.wa, bar.portal)));
   const chart = document.getElementById("chart");
+  const tip = document.getElementById("chartTip");
+  tip.hidden = true;
   chart.innerHTML = "";
   stats.bars.forEach((bar, index) => {
     const col = document.createElement("div");
     col.className = "col";
     const bars = document.createElement("div");
     bars.className = "bars";
-    const view = document.createElement("i");
-    view.className = "view";
-    view.style.height = bar.views ? `${Math.max(10, Math.round((bar.views / max) * 100))}%` : "0";
-    const wa = document.createElement("i");
-    wa.className = "wa";
-    wa.style.height = bar.wa ? `${Math.max(10, Math.round((bar.wa / max) * 100))}%` : "0";
-    bars.append(view, wa);
+    [["view", bar.views], ["wa", bar.wa], ["portal", bar.portal]].forEach(([name, value]) => {
+      const mark = document.createElement("i");
+      mark.className = name;
+      mark.style.height = barHeight(value, max);
+      bars.append(mark);
+    });
     const label = document.createElement("em");
     const dense = stats.bars.length > 12;
     label.textContent = !dense || index % 5 === 0 || index === stats.bars.length - 1 ? bar.label : "";
     col.append(bars, label);
+    const open = () => {
+      tip.textContent = tipText(bar);
+      placeTip(col);
+    };
+    col.addEventListener("mouseenter", open);
+    col.addEventListener("mouseleave", () => { tip.hidden = true; });
+    col.addEventListener("click", open);
     chart.append(col);
   });
 
@@ -126,15 +176,19 @@ function render(stats) {
   }
   stats.recent.forEach((event) => {
     const li = document.createElement("li");
-    const text = event.t === "wa" ? `WhatsApp · ${VIA[event.via] || "clique"}` : "Abriu o site";
+    let text = "Abriu o site";
+    if (event.t === "wa") text = `WhatsApp · ${VIA[event.via] || "clique"}`;
+    if (event.t === "portfolio") text = "Botão do portfólio";
+    if (event.t === "site" && event.via === "pet") text = "Foi para Seu Petshop";
+    if (event.t === "site" && event.via === "dent") text = "Foi para Sua Clínica";
     li.innerHTML = `<span>${text}</span><time>${when(event.ts)}</time>`;
     recent.append(li);
   });
 }
 
 async function paint() {
-  const events = await loadEvents();
-  render(BrasaTrack.summarize(events, range));
+  const loaded = await loadEvents();
+  render(BrasaTrack.summarize(loaded.events, range), loaded.remote);
 }
 
 function showDesk() {
@@ -181,4 +235,5 @@ document.querySelectorAll(".periods button").forEach((button) => {
   });
 });
 
-if (sessionStorage.getItem("brasa-admin") === "1") showDesk();
+sessionStorage.removeItem("brasa-admin");
+sessionStorage.removeItem("brasa-token");

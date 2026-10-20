@@ -7,6 +7,7 @@ Abre http://127.0.0.1:8090/admin.html
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 import json
 import secrets
+import socket
 import threading
 import time
 from pathlib import Path
@@ -110,12 +111,19 @@ class Handler(SimpleHTTPRequestHandler):
     def handle_hit(self):
         data = self.read_json() or {}
         kind = data.get("t")
-        if kind not in ("view", "wa"):
+        allowed = {
+            "view": {""},
+            "wa": {"botao", "contato", "pedro"},
+            "portfolio": {"portal"},
+            "site": {"pet", "dent"},
+        }
+        if kind not in allowed:
             self.send_json(400, {"ok": False})
             return
         via = str(data.get("via", ""))[:20]
-        if via not in ("", "botao", "contato", "pedro"):
-            via = ""
+        if via not in allowed[kind]:
+            self.send_json(400, {"ok": False})
+            return
         visitor = str(data.get("id", ""))[:80] or "anon"
         try:
             ts = int(data.get("ts") or time.time() * 1000)
@@ -142,8 +150,23 @@ class Handler(SimpleHTTPRequestHandler):
         super().log_message(fmt, *args)
 
 
+def lan_ip():
+    try:
+        sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        sock.settimeout(1.5)
+        sock.connect(("8.8.8.8", 80))
+        ip = sock.getsockname()[0]
+        sock.close()
+        return ip
+    except OSError:
+        return ""
+
+
 if __name__ == "__main__":
-    server = ThreadingHTTPServer(("127.0.0.1", PORT), Handler)
-    print(f"BRASA em http://127.0.0.1:{PORT}")
-    print(f"Admin em http://127.0.0.1:{PORT}/admin.html")
+    server = ThreadingHTTPServer(("0.0.0.0", PORT), Handler)
+    host = lan_ip()
+    print(f"BRASA em http://127.0.0.1:{PORT}", flush=True)
+    if host:
+        print(f"Na rede: http://{host}:{PORT}", flush=True)
+    print(f"Admin em http://127.0.0.1:{PORT}/admin.html", flush=True)
     server.serve_forever()
