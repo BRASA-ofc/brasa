@@ -115,7 +115,7 @@ class Handler(SimpleHTTPRequestHandler):
             "view": {""},
             "wa": {"botao", "contato", "pedro"},
             "portfolio": {"portal"},
-            "site": {"pet", "dent"},
+            "site": {"pet", "dent", "loja"},
         }
         if kind not in allowed:
             self.send_json(400, {"ok": False})

@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Portfólio — BRASA</title>
-  <meta name="description" content="Portfólio da BRASA. Dois sites: Seu Petshop e Sua Clínica Odontológica." />
+  <meta name="description" content="Portfólio da BRASA. Três sites: Seu Petshop, Sua Clínica Odontológica e Sua Loja." />
   <meta name="theme-color" content="#080808" />
   <link rel="icon" href="../assets/favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -28,8 +28,8 @@
   <main class="page">
     <header class="intro">
       <p class="where">Você está no portfólio</p>
-      <h1>Dois trabalhos.</h1>
-      <p class="lede">Um petshop e uma clínica. Cada botão abre o site.</p>
+      <h1>Três trabalhos.</h1>
+      <p class="lede">Um petshop, uma clínica e uma loja. Cada botão abre o site.</p>
     </header>
 
     <div class="works">
@@ -65,12 +65,27 @@
           <strong>Sua Clínica</strong>
         </span>
       </a>
+
+      <a class="btn shop" href="https://sua-loja-de-roupa.netlify.app/" target="_blank" rel="noopener noreferrer">
+        <svg class="hanger" viewBox="0 0 80 56" aria-hidden="true">
+          <path d="M40 4a7 7 0 0 1 7 7c0 2.8-1.6 5.2-4 6.3L66 34.2A3 3 0 0 1 64.2 39H15.8a3 3 0 0 1-1.8-4.8L37 17.3A7 7 0 0 1 33 11a7 7 0 0 1 7-7zm0 4a3 3 0 0 0-1 5.8l1 .4 1-.4A3 3 0 0 0 40 8z"/>
+        </svg>
+        <svg class="shirt" viewBox="0 0 64 64" aria-hidden="true">
+          <path d="M18 12 28 6l4 8 4-8 10 6 10 10-7 6v28H15V34l-7-6 10-10z"/>
+        </svg>
+        <span class="cloth-tag" aria-hidden="true">look</span>
+        <span class="label">
+          <small>Roupa</small>
+          <strong>Sua Loja</strong>
+        </span>
+      </a>
     </div>
   </main>
   <script src="../js/analytics.js"></script>
   <script>
     document.querySelector(".btn.pet").addEventListener("click", () => BrasaTrack.track("site", "pet"));
     document.querySelector(".btn.dent").addEventListener("click", () => BrasaTrack.track("site", "dent"));
+    document.querySelector(".btn.shop").addEventListener("click", () => BrasaTrack.track("site", "loja"));
   </script>
 </body>
 </html>

@@ -85,7 +85,8 @@ function tipText(bar) {
     `WhatsApp: ${bar.wa} · ${pessoas(bar.waPeople)}`,
     `Portfólio: ${bar.portal} · ${pessoas(bar.portalPeople)}`,
     `Seu Petshop: ${bar.pet} · ${pessoas(bar.petPeople)}`,
-    `Sua Clínica: ${bar.dent} · ${pessoas(bar.dentPeople)}`
+    `Sua Clínica: ${bar.dent} · ${pessoas(bar.dentPeople)}`,
+    `Sua Loja: ${bar.shop} · ${pessoas(bar.shopPeople)}`
   ].join("\n");
 }
 
@@ -121,6 +122,8 @@ function render(stats, remote) {
   document.getElementById("statPetPeople").textContent = pessoas(stats.petPeople);
   document.getElementById("statDent").textContent = String(stats.dent);
   document.getElementById("statDentPeople").textContent = pessoas(stats.dentPeople);
+  document.getElementById("statShop").textContent = String(stats.shop);
+  document.getElementById("statShopPeople").textContent = pessoas(stats.shopPeople);
 
   const max = Math.max(1, ...stats.bars.map((bar) => Math.max(bar.views, bar.wa, bar.portal)));
   const chart = document.getElementById("chart");
@@ -181,6 +184,7 @@ function render(stats, remote) {
     if (event.t === "portfolio") text = "Botão do portfólio";
     if (event.t === "site" && event.via === "pet") text = "Foi para Seu Petshop";
     if (event.t === "site" && event.via === "dent") text = "Foi para Sua Clínica";
+    if (event.t === "site" && event.via === "loja") text = "Foi para Sua Loja";
     li.innerHTML = `<span>${text}</span><time>${when(event.ts)}</time>`;
     recent.append(li);
   });

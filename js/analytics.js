@@ -47,7 +47,7 @@ const BrasaTrack = (() => {
     view: [""],
     wa: ["botao", "contato", "pedro"],
     portfolio: ["portal"],
-    site: ["pet", "dent"]
+    site: ["pet", "dent", "loja"]
   };
 
   function track(type, via) {
@@ -128,6 +128,7 @@ const BrasaTrack = (() => {
       const portals = of("portfolio", "portal");
       const pets = of("site", "pet");
       const dents = of("site", "dent");
+      const shops = of("site", "loja");
       return {
         label: slot.label,
         views: views.length,
@@ -139,7 +140,9 @@ const BrasaTrack = (() => {
         pet: pets.length,
         petPeople: people(pets),
         dent: dents.length,
-        dentPeople: people(dents)
+        dentPeople: people(dents),
+        shop: shops.length,
+        shopPeople: people(shops)
       };
     });
   }
@@ -152,6 +155,7 @@ const BrasaTrack = (() => {
     const portals = rows.filter((event) => event.t === "portfolio");
     const pets = rows.filter((event) => event.t === "site" && event.via === "pet");
     const dents = rows.filter((event) => event.t === "site" && event.via === "dent");
+    const shops = rows.filter((event) => event.t === "site" && event.via === "loja");
     const peopleOf = (list) => new Set(list.map((event) => event.id)).size;
     const people = peopleOf(views);
     const peopleWa = peopleOf(was);
@@ -171,6 +175,8 @@ const BrasaTrack = (() => {
       petPeople: peopleOf(pets),
       dent: dents.length,
       dentPeople: peopleOf(dents),
+      shop: shops.length,
+      shopPeople: peopleOf(shops),
       via,
       lastView: views.reduce((max, event) => Math.max(max, event.ts), 0),
       lastWa: was.reduce((max, event) => Math.max(max, event.ts), 0),
